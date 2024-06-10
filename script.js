@@ -18,6 +18,7 @@ word list = [...]
 rand word = find random word
 
 query select display for word, display for wrong letters, and strikes
+( )
 
 query select pitcher and baseball
 
@@ -27,10 +28,31 @@ declare the functions
 
 onclick of play game. function show instructions 
 
+create display function ()
+    in the flexbox container
+    for every character in word
+        let idOfEl = 0
+        create element in container
+        setattribute of element in container with id of idOfEl
+        setattricut of element in container with class of displayEl (make sure displayEl has a class in the css sheet with a line at the bottom)
+        idforchar +=1
+
+remove display function ()
+    let elsToDel = select all elements with class of displayEl
+    eslToDel.remove();
+
+add to display function (userGuess)
+    let displays = document.querySelectorAll('.displayEl');
+    for i in userGuess //which is a string
+        if userGuess[i] === e.target.value
+            displays[i].textContent = userguess[i]  //adding userGuess to display with id of i
+
+
 onclick of start.function game
     while strikes < 3 and correct < random word length
         pitcher animation ()
-        get user guess()
+        userGuess = get user guess() 
+            use e.target.value to find what letter was entered
         IF guess is in word
             THEN bat crack noise and crowd cheer
             add guess to display ()
