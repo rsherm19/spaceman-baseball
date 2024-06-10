@@ -38,13 +38,13 @@ create display function ()
         idforchar +=1
 
 remove display function ()
-    let elsToDel = select all elements with class of displayEl
-    eslToDel.remove();
+    let elsToDel = select all elements with class of display
+    elsToDel.remove();
 
 add to display function (userGuess)
-    let displays = document.querySelectorAll('.displayEl');
+    let displays = document.querySelectorAll('.display');
     for i in userGuess //which is a string
-        if userGuess[i] === e.target.value
+        if userGuess[i] === userguess
             displays[i].textContent = userguess[i]  //adding userGuess to display with id of i
 
 
@@ -52,7 +52,7 @@ onclick of start.function game
     while strikes < 3 and correct < random word length
         pitcher animation ()
         userGuess = get user guess() 
-            use e.target.value to find what letter was entered
+            add event listener for input and use e.target.value to find what letter was entered
         IF guess is in word
             THEN bat crack noise and crowd cheer
             add guess to display ()

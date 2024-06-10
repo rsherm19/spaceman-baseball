@@ -1,3 +1,44 @@
-* {
+
+
+body {
     background-color: beige;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        'header header header'
+        'main main main';
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    grid-area: header;
+    background-color: greenyellow;
+    height: 50px;
+}
+
+main {
+    grid-area: main;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+article {
+    background-color: burlywood;
+    width: 100vh;
+    height: 220px;
+    margin: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;  
+}
+
+.display {
+    background-color: orange;
+    height: 100px;
+    width: 90px;
 }
