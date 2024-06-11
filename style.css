@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap'); /*tiny5  or tiny5-regular*/
+@import url('https://fonts.googleapis.com/css2?family=Honk&family=Tiny5&display=swap');  /*honk*/
 
+* {
+    font-family: tiny5;
+}
 
 body {
     background-color: beige;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: 
         'header header header'
-        'main main main';
+        'main main main'
+        'footer footer footer';
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -14,23 +20,33 @@ body {
 
 header {
     grid-area: header;
-    background-color: greenyellow;
-    height: 50px;
+    background-color: rgb(215, 159, 84);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
 main {
     grid-area: main;
-    background-color: red;
+    background: url("https://i.imgur.com/naIsXxo.jpeg");
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 
+footer {
+    grid-area: footer;
+    height: 40px;
+}
+
 article {
-    background-color: burlywood;
     width: 100vh;
     height: 220px;
-    margin: 70px;
+    margin: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -38,7 +54,26 @@ article {
 }
 
 .display {
-    background-color: orange;
     height: 100px;
     width: 90px;
+    font-size: 70px;
+    color: #ffffff;
+    -webkit-text-stroke: 2px #ff5a5a;
+    border-bottom: 5px solid rgb(255, 255, 255);
+    margin-bottom: -50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+header img {
+    width: 150px;
+}
+
+
+
+
+/* keep at the bottom  */
+.toggle {
+    display: none;
 }

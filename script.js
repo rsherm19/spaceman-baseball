@@ -15,21 +15,22 @@ Psuedocode:
 
 word list = [...]
 
-rand word = find random word
+rand word () = find random word
 
-query select display for word, display for wrong letters, and strikes
-( )
-
-query select pitcher and baseball
+query select display for wrong letters, strikes, start game screen, instructions screen, and end graphics
+querySelector the buttons individually!!!
 
 query select audio and any other graphics
 
-declare the functions
+//declare the functions
 
-onclick of play game. function show instructions 
+toggle home screen ()
+toggle instructions ()
+toggle displayContainer ()
 
 create display function ()
     in the flexbox container
+    word = random word ()
     for every character in word
         let idOfEl = 0
         create element in container
@@ -41,16 +42,58 @@ remove display function ()
     let elsToDel = select all elements with class of display
     elsToDel.remove();
 
-add to display function (userGuess)
-    let displays = document.querySelectorAll('.display');
+add to displays function (userGuess)
     for i in userGuess //which is a string
         if userGuess[i] === userguess
             displays[i].textContent = userguess[i]  //adding userGuess to display with id of i
 
 
-onclick of start.function game
+toggle input screen ()
+
+get user guess ()
+
+change strikes function ()
+    if strikes === 0
+        strikesEl.textContent = "Strikes: X"
+    etc...
+
+reset strikes function ()
+    strikesEl.textContent = "Strikes: "
+
+add to wrong letters ()
+    createElement from userGuess
+    append element to unordered list (create this in html first)
+
+reset wrong letters ()
+    clear unordered list
+
+play again or quit ()
+    
+
+
+toggle end graphics ()
+    IF display.length === word.length
+        endGraphicsEl.innerHTML = 'congrats etc...';
+        play again or quit ()
+    ELSE    
+        endGraphicsEl.innerHTML = 'you loose etc...';
+        play again or quit ()
+
+
+reset all ()
+    toggle display container ()
+    remove displays ()
+    reset strikes ()
+    reset wrong letters ()
+    toggle end graphics ()
+
+start ()
     while strikes < 3 and correct < random word length
+        create display ()
+        toggle instructions ()
+        toggle display ()
         pitcher animation ()
+        let displays = document.querySelectorAll('.display');
         userGuess = get user guess() 
             add event listener for input and use e.target.value to find what letter was entered
         IF guess is in word
@@ -60,14 +103,12 @@ onclick of start.function game
             strikes = 0
             reset strike display ()
         ELSE
-            add guess to display wrong letters ()
+            add guess to wrong letters ()
             strikes += 1
             add to strike display()
 
-    IF display.length === word.length
-        user wins graphics ()
-        play again or quit ()
-    ELSE    
-        user looses graphics ()
-        play again or quit ()
+
 */ 
+
+onclick of play game. toggle instructions ()
+onclick of start 
