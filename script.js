@@ -1,22 +1,25 @@
+
+// user stories:
+// -moving image of pitcher
+// -baseball image at different rotations
+// -sound effects (if have times)
+// -computer selects random word from list
+// -user enters letter when pitcher throws
+// -strike count goes up if user wrong and letter added to wrong letters
+// -letter added to display and strikes reset if answers correct letter
+
+
+
+
+
+const wordArray = ["BAT", "BALL", "HIT", "RUN", "BUNT", "CATCH", "STEAL", "SLIDE", "TAG", "WALK", "BASE", "DIVE", "FOUL", "GLOVE", "PITCH", "UMP", "ZONE", "CURVE", "SWING", "OUT", "HOME", "LINE", "PLAY", "TEAM", "FAIR", "TOSS", "DIRT", "SAFE"];
+
+
+
+let word = wordArray[Math.floor(Math.random() * wordArray.length)];
+console.log(word);
+
 /*
-user stories:
--moving image of pitcher
--baseball image at different rotations
--sound effects (if have times)
--computer selects random word from list
--user enters letter when pitcher throws
--strike count goes up if user wrong and letter added to wrong letters
--letter added to display and strikes reset if answers correct letter
-
-
-
-
-Psuedocode:
-
-word list = [...]
-
-rand word () = find random word
-
 query select display for wrong letters, strikes, start game screen, instructions screen, and end graphics
 querySelector the buttons individually!!!
 
@@ -25,8 +28,10 @@ query select audio and any other graphics
 //declare the functions
 
 toggle home screen ()
+    home.setAttribute('class', 'toggle')
+
 toggle instructions ()
-toggle displayContainer ()
+    instructions.setAttribute('class', 'toggle')
 
 create display function ()
     in the flexbox container
@@ -39,8 +44,7 @@ create display function ()
         idforchar +=1
 
 remove display function ()
-    let elsToDel = select all elements with class of display
-    elsToDel.remove();
+    displays.remove();
 
 add to displays function (userGuess)
     for i in userGuess //which is a string
@@ -51,6 +55,9 @@ add to displays function (userGuess)
 toggle input screen ()
 
 get user guess ()
+    add event listener for input and use e.target.value to find what letter was entered
+        input.textContent = '';
+        return guess
 
 change strikes function ()
     if strikes === 0
@@ -81,7 +88,6 @@ toggle end graphics ()
 
 
 reset all ()
-    toggle display container ()
     remove displays ()
     reset strikes ()
     reset wrong letters ()
@@ -90,25 +96,22 @@ reset all ()
 start ()
     while strikes < 3 and correct < random word length
         create display ()
-        toggle instructions ()
-        toggle display ()
-        pitcher animation ()
         let displays = document.querySelectorAll('.display');
+        toggle instructions ()
         userGuess = get user guess() 
-            add event listener for input and use e.target.value to find what letter was entered
         IF guess is in word
             THEN bat crack noise and crowd cheer
-            add guess to display ()
+            add to displays ()
             correct += 1
             strikes = 0
             reset strike display ()
         ELSE
-            add guess to wrong letters ()
+            add to wrong letters ()
             strikes += 1
             add to strike display()
 
 
-*/ 
-
 onclick of play game. toggle instructions ()
 onclick of start 
+*/ 
+

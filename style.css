@@ -21,11 +21,15 @@ body {
 header {
     grid-area: header;
     background-color: rgb(215, 159, 84);
-    height: 70px;
+    height: 80;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+}
+
+header img {
+    width: 150px;
 }
 
 main {
@@ -37,13 +41,9 @@ main {
     justify-content: center;
     align-items: flex-end;
 }
+ 
 
-footer {
-    grid-area: footer;
-    height: 40px;
-}
-
-article {
+#displays {
     width: 100vh;
     height: 220px;
     margin: 10px;
@@ -66,14 +66,126 @@ article {
     align-items: flex-end;
 }
 
-header img {
+
+#wrong-letters {
+    max-width: 180px;
+    flex-wrap: wrap;
+}
+
+#wrong-letters h3 {
+    text-align: center;
+}
+
+#wrong-letters ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#wrong-letters ul li {
+    display: inline;
+    font-size: 20px;
+}
+
+
+#instructions {
+    position: absolute;
+    background-color: rgb(215, 159, 84);
+    height: 32vh;
+    width: 55vh;
+    top: 33%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #ffffff;
+    border-radius: 40px;
+    text-align: center;
+}
+
+#instructions p {
+    font-size: large;
+}
+
+#instructions button {
+    background-color: #fc3f3f;
+    border-radius: 7px;
+    height: 70px;
     width: 150px;
+    font-size: 32px;
+    padding: 16px;
+    margin: 0;
+    /* align-items: center; */
+}
+
+#home {
+    position: absolute;
+    top: 40%;
+    text-align: center;
+}
+
+#home h1 {
+    font-family: honk;
+    font-size: 100px;
+    line-height: 2px;
+}
+
+#home button {
+    background-color: #fc3f3f;
+    border-radius: 7px;
+    height: 85px;
+    width: 200px;
+    font-size: 32px;
+    padding: 16px;
+    margin: 0;
+}
+
+#home button:hover {
+    cursor: pointer;
+}
+
+#input-popup {
+    position: absolute;
+    background-color: rgb(215, 159, 84);
+    height: 32vh;
+    width: 55vh;
+    top: 33%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #ffffff;
+    border-radius: 40px;
+    text-align: center;
+}
+
+#input-popup input {
+    font-size: 80px;
+    text-align: center;
+    text-transform: uppercase;
+    height: 110px;
+    width: 110px;
+}
+
+#input-popup button {
+    background-color: #fc3f3f;
+    border-radius: 7px;
+    font-size: 25px;
+    height: 50px;
+    width: 130px;
+    margin-top: 20px;
 }
 
 
 
+.background-alt{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px 0 0 0;
+}
 
 /* keep at the bottom  */
 .toggle {
+    display: none;
+}
+
+#displays .toggle {
     display: none;
 }
