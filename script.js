@@ -17,7 +17,7 @@ const wordArray = ["BAT", "BALL", "HIT", "RUN", "BUNT", "CATCH", "STEAL", "SLIDE
 
 
 
-
+const displaysParentEl = document.getElementById('displays');
 const wrongLettersListEl = document.getElementById('wrong-letters-list');
 const strikesEl = document.getElementById('strikes');
 const homeScreenEl = document.getElementById('home-screen');
@@ -47,9 +47,138 @@ const toggleInputPopup = () => {
 }
 
 const createDisplays = () => {
+    for (i = 0; i < word.length; i++) {
+        let displayEl = document.createElement('div');
+        displayEl.setAttribute('id', `${i}`);
+        displayEl.setAttribute('class', 'display'); 
+        displaysParentEl.append(displayEl);
+    }
+}
+
+const removeDisplays = () => {
+    let displays = document.querySelectorAll('.display');
+    displays.forEach((display) => {
+        display.remove();
+    });  
+}
+
+const getUserGuess = () => {
+    toggleInputPopup();
+    inputButtonEl.addEventListener('click', () => {
+        addToDisplays(inputBoxEl.value)
+        inputBoxEl.value = '';
+    });
+}
+
+const updateStrikes = () => {
+    if (strikes === 0) {
+        strikesEl.textContent = 'Strikes: 🔲🔲🔲';
+    } else if (strikes === 1) {
+        strikesEl.textContent = 'Strikes: ❌🔲🔲';
+    } else if (strikes === 2) {
+        strikesEl.textContent = 'Strikes: ❌❌🔲';
+    } else if (strikes === 3) {
+        strikesEl.textContent = 'Strikes: ❌❌❌';
+    }
+}
+
+const resetStrikes = () => {
+    strikesEl.textContent = "Strikes: 🔲🔲🔲"
+}
+
+
+const addToWrongLetters = (guess) => {
+    let wrongLetter = document.createElement('li');
+    wrongLetter.textContent = guess;
+    wrongLetter.setAttribute('class', 'wrong-letter');
+    wrongLettersListEl.append(wrongLetter);   
+}
+
+const removeWrongLetters = () => {
+    let wrongLetters = document.querySelectorAll('.wrong-letter');
+    wrongLetters.forEach((letter) => {
+        letter.remove();
+    });
+}
+
+const resetAll = () => {
+    removeDisplays();
+    resetStrikes();
+    removeWrongLetters();
+}
+
+
+const removeEndGraphics = () => {
+    endGraphicsEl.classList.toggle('toggle');
+}
+
+const playAgain = () => {
+    removeEndGraphics();
+    resetAll();
+    start();
+}
+
+const quit = () => {
+    removeEndGraphics();
+    resetAll();
+    toggleHomeScreen();
+}
+
+const playOrQuit = () => {
+    endGraphicsButtonsEls.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            if (e.target.id === 'play-again-button') {
+                playAgain();
+            } else if (e.target.id === 'quit-button') {
+                quit();
+            }
+        });
+    });
+}
+
+const showEndGraphics = () => {
+    endGraphicsEl.classList.toggle('toggle');
+    let finalGuess = '';
+    for (let childEl of displayChildrenEls) {
+        if (childEl.textContent !== '') {
+            finalGuess += childEl.textContent;
+        }
+    }
+    if (finalGuess === word) {
+        endGraphicsTextEl.textContent = 'You Win!';
+    } else if (finalGuess !== word) {
+        endGraphicsTextEl.textContent = 'Game Over';
+    }
+    playOrQuit();
+}
+
+
+const addToDisplays = (guess) => {
+    if (word.includes(guess)) {
+        for (i = 0; i < word.length; i++) {
+            if (word[i] === guess) {
+                displayChildrenEls[i].textContent = guess;  
+            }
+        }
+        correct +=1;
+        strikes = 0;
+    } else {
+        addToWrongLetters(guess);
+        strikes += 1;
+        updateStrikes();
+    }
+}
+
+const start = () => {
     let word = wordArray[Math.floor(Math.random() * wordArray.length)];
-    for () {
-        
+    console.log(word);
+    createDisplays();
+    let displayChildrenEls = document.querySelectorAll('.display');
+    let strikes = 0;
+    let correct = 0;
+    while (strikes < 3 && correct < word.length) {
+        getUserGuess();
+    
     }
 }
 
@@ -57,94 +186,33 @@ const createDisplays = () => {
 /*
 
 
-create display function ()
-    in the flexbox container
-    word = random word ()
-    for every character in word
-        let idOfEl = 0
-        create element in container
-        setattribute of element in container with id of idOfEl
-        setattricut of element in container with class of displayEl (make sure displayEl has a class in the css sheet with a line at the bottom)
-        idforchar +=1
-
-remove display function ()
-    displays.remove();
-
-add to displays function (userGuess)
-    for i in userGuess //which is a string
-        if userGuess[i] === userguess
-            displays[i].textContent = userguess[i]  //adding userGuess to display with id of i
-
-get user guess ()
-    toggle input pop up ()
-    add event listener for input and use e.target.value to find what letter was entered
-        input.textContent = '';
-        return guess
-
-change strikes function ()
-    if strikes === 0
-        strikesEl.textContent = "Strikes: X"
-    etc...
-
-reset strikes function ()
-    strikesEl.textContent = "Strikes: "
-
-add to wrong letters ()
-    createElement from userGuess
-    append element to unordered list (create this in html first)
-
-reset wrong letters ()
-    clear unordered list
-
-reset all ()
-    remove displays ()
-    reset strikes ()
-    reset wrong letters ()
-
-play again or quit ()
-    endGraphicsButtonsEls.forEach((button) => {
-        button.addEventListener('click', (e) => {
-            if (e.target.id === 'play-again-button') {
-                    
-            } else if (e.target.id === 'quit-button') {
-                reset all ()
-            }
-        });
-    });
-    
-    
-
-
-toggle end graphics ()
-    IF display.length === word.length
-        endGraphicsTextEl.textContent = 'You Win!';
-        play again or quit ()
-    ELSE    
-        endGraphicsTextEl.innerHTML = 'Game Over';
-        play again or quit ()
-
-
 start ()
-    while strikes < 3 and correct < random word length
-        create display ()
-        let displays = document.querySelectorAll('.display');
-        toggle instructions ()
-        userGuess = get user guess() 
-        IF guess is in word
-            THEN bat crack noise and crowd cheer
-            add to displays ()
-            correct += 1
-            strikes = 0
-            reset strike display ()
-        ELSE
-            add to wrong letters ()
-            strikes += 1
-            add to strike display()
+    let word = wordArray[Math.floor(Math.random() * wordArray.length)];
+    create display ()
+    let displayChildrenEls = document.querySelectorAll('.display');
+    while strikes < 3 and correct < random word length 
+        let strikes = 0
+        let correct = 0    
+        get user guess() 
+            IF guess is in word
+                THEN bat crack noise and crowd cheer
+                add to displays ()
+                correct += 1
+                strikes = 0
+                reset strike display ()
+            ELSE
+                add to wrong letters ()
+                strikes += 1
+                update strikes ()
 
     toggle input popup ()
     toggle end graphics
 
-onclick of play game. toggle instructions ()
-onclick of start 
+play game ()
+    toggle instructions()
+    start button. add event listener ('click', start())
+
+
+play game button. add event listener ('click', play game());
 */ 
 
