@@ -16,22 +16,46 @@ const wordArray = ["BAT", "BALL", "HIT", "RUN", "BUNT", "CATCH", "STEAL", "SLIDE
 
 
 
-let word = wordArray[Math.floor(Math.random() * wordArray.length)];
-console.log(word);
+
+
+const wrongLettersListEl = document.getElementById('wrong-letters-list');
+const strikesEl = document.getElementById('strikes');
+const homeScreenEl = document.getElementById('home-screen');
+const playGameButtonEl = document.getElementById('play-game-button');
+const instructionsEl = document.getElementById('instructions');
+const startButtonEl = document.getElementById('start-button');
+const inputPopupEl = document.getElementById('input-popup');
+const inputBoxEl = document.getElementById('input-box');
+const inputButtonEl= document.getElementById('input-button');
+const endGraphicsEl = document.getElementById('end-graphics');
+const endGraphicsTextEl = document.getElementById('end-graphics-text');
+const endGraphicsButtonsEls = document.querySelectorAll('.end-graphics-button');
+
+//inputButtonEl.addEventListener('click', () => console.log(inputBoxEl.value));
+
+
+const toggleHomeScreen = () => {
+    homeScreenEl.classList.toggle('toggle');
+}
+
+const toggleInstructions = () => {
+    instructionsEl.classList.toggle('toggle');
+}
+
+const toggleInputPopup = () => {
+    inputPopupEl.classList.toggle('toggle');
+}
+
+const createDisplays = () => {
+    let word = wordArray[Math.floor(Math.random() * wordArray.length)];
+    for () {
+        
+    }
+}
+
 
 /*
-query select display for wrong letters, strikes, start game screen, instructions screen, and end graphics
-querySelector the buttons individually!!!
 
-query select audio and any other graphics
-
-//declare the functions
-
-toggle home screen ()
-    home.setAttribute('class', 'toggle')
-
-toggle instructions ()
-    instructions.setAttribute('class', 'toggle')
 
 create display function ()
     in the flexbox container
@@ -51,10 +75,8 @@ add to displays function (userGuess)
         if userGuess[i] === userguess
             displays[i].textContent = userguess[i]  //adding userGuess to display with id of i
 
-
-toggle input screen ()
-
 get user guess ()
+    toggle input pop up ()
     add event listener for input and use e.target.value to find what letter was entered
         input.textContent = '';
         return guess
@@ -74,24 +96,33 @@ add to wrong letters ()
 reset wrong letters ()
     clear unordered list
 
+reset all ()
+    remove displays ()
+    reset strikes ()
+    reset wrong letters ()
+
 play again or quit ()
+    endGraphicsButtonsEls.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            if (e.target.id === 'play-again-button') {
+                    
+            } else if (e.target.id === 'quit-button') {
+                reset all ()
+            }
+        });
+    });
+    
     
 
 
 toggle end graphics ()
     IF display.length === word.length
-        endGraphicsEl.innerHTML = 'congrats etc...';
+        endGraphicsTextEl.textContent = 'You Win!';
         play again or quit ()
     ELSE    
-        endGraphicsEl.innerHTML = 'you loose etc...';
+        endGraphicsTextEl.innerHTML = 'Game Over';
         play again or quit ()
 
-
-reset all ()
-    remove displays ()
-    reset strikes ()
-    reset wrong letters ()
-    toggle end graphics ()
 
 start ()
     while strikes < 3 and correct < random word length
@@ -110,6 +141,8 @@ start ()
             strikes += 1
             add to strike display()
 
+    toggle input popup ()
+    toggle end graphics
 
 onclick of play game. toggle instructions ()
 onclick of start 

@@ -12,7 +12,7 @@
         <h2 id="strikes">strikes: ❌❌❌</h2>
         <div id="wrong-letters">
             <h3>wrong letters:</h3>
-            <ul>
+            <ul id="wrong-letters-list">
                 <li>a</li>
                 <li>b</li>
                 <li>c</li>
@@ -48,27 +48,33 @@
     <main>
         <img class="background-alt" alt="A cartoon baseball field with players">
         <article id="displays">
-            <div class="display">B</div>
-            <div class="display">A</div>
-            <div class="display">L</div>
-            <div class="display">L</div>
+            <!-- <div class="display">b</div>
+            <div class="display">a</div>
+            <div class="display">l</div>
+            <div class="display">l</div> -->
             <!-- <div class="display">s</div> -->
         </article>
 
+        <div class="popup" id="home-screen">
+            <h1>Spaceman with Southpark!</h1>
+            <button id="play-game-button" type="button">Play Game!</button>
+        </div>
         <div class="popup toggle" id="instructions">
             <h2>Instructions:</h2>
             <p>Guess the correct letters of a baseball term to win! If you guess wrong, you will get a strike, and the letter will go to the wrong letters list. Each time you get a correct letter, your strikes reset! Play ball!</p>
-            <button type="button">Start!</button>
-        </div>
-        <div class="popup toggle" id="home">
-            <h1>Spaceman with Southpark!</h1>
-            <button type="button">Play Game!</button>
+            <button id="start-button" type="button">Start!</button>
         </div>
         <div class="popup toggle" id="input-popup">
             <h1>Enter a letter!</h1>
-            <input type="text" maxlength="1">
+            <input id="input-box" type="text" maxlength="1" oninput="this.value = this.value.toUpperCase()"> <!-- I got the this value to uppercase from stack overflow -->
             <br>
-            <button type="submit">Enter</button>
+            <button id="input-button" type="button">Enter</button>
+        </div>
+        <div class="popup toggle" id="end-graphics">
+            <h1 id="end-graphics-text">You Win!</h1>
+            <button class="end-graphics-button" id="play-again-button" type="button">Play Again</button>
+            <button class="end-graphics-button" id="quit-button" type="button">Quit</button>
+        </div>
         </div>
 
     </main>
