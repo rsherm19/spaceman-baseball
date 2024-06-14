@@ -46,7 +46,7 @@ const toggleInputPopup = () => {
     inputPopupEl.classList.toggle('toggle');
 }
 
-const createDisplays = () => {
+const createDisplays = (word) => {
     for (i = 0; i < word.length; i++) {
         let displayEl = document.createElement('div');
         displayEl.setAttribute('id', `${i}`);
@@ -55,19 +55,19 @@ const createDisplays = () => {
     }
 }
 
-const removeDisplays = () => {
-    let displays = document.querySelectorAll('.display');
-    displays.forEach((display) => {
+const removeDisplays = (nodeList) => {
+    // let displays = document.querySelectorAll('.display');
+    nodeList.forEach((display) => {
         display.remove();
     });  
 }
 
-const getUserGuess = () => {
+const getUserGuess = (word, nodeList) => {
     toggleInputPopup();
-    inputButtonEl.addEventListener('click', () => {
-        addToDisplays(inputBoxEl.value)
+    inputButtonEl.onclick = () => {
+        addToDisplays(inputBoxEl.value, word, nodeList)
         inputBoxEl.value = '';
-    });
+    };
 }
 
 const updateStrikes = () => {
@@ -86,12 +86,15 @@ const resetStrikes = () => {
     strikesEl.textContent = "Strikes: 🔲🔲🔲"
 }
 
-
+let wrongLettersArray = [];
 const addToWrongLetters = (guess) => {
-    let wrongLetter = document.createElement('li');
-    wrongLetter.textContent = guess;
-    wrongLetter.setAttribute('class', 'wrong-letter');
-    wrongLettersListEl.append(wrongLetter);   
+    if (!wrongLettersArray.includes(guess)) {
+        wrongLettersArray.push(guess);
+        let wrongLetter = document.createElement('li');
+        wrongLetter.textContent = guess;
+        wrongLetter.setAttribute('class', 'wrong-letter');
+        wrongLettersListEl.append(wrongLetter);     
+    }  
 }
 
 const removeWrongLetters = () => {
@@ -101,10 +104,15 @@ const removeWrongLetters = () => {
     });
 }
 
-const resetAll = () => {
-    removeDisplays();
+const resetAll = (nodeList) => {
+    removeDisplays(nodeList);
     resetStrikes();
     removeWrongLetters();
+    word = ''
+    strikes = 0;
+    correct = 0;
+    wrongLettersArray = [];
+
 }
 
 
@@ -112,31 +120,45 @@ const removeEndGraphics = () => {
     endGraphicsEl.classList.toggle('toggle');
 }
 
-const playAgain = () => {
+const playAgain = (nodeList) => {
     removeEndGraphics();
-    resetAll();
+    resetAll(nodeList);
     start();
 }
 
-const quit = () => {
+const quit = (nodeList) => {
     removeEndGraphics();
-    resetAll();
+    resetAll(nodeList);
     toggleHomeScreen();
 }
 
-const playOrQuit = () => {
+// const playOrQuit = (nodeList) => {
+//     endGraphicsButtonsEls.forEach((button) => {
+//         button.addEventListener('click', (e) => {
+//             if (e.target.id === 'play-again-button') {
+//                 playAgain(nodeList);
+//             } else if (e.target.id === 'quit-button') {
+//                 quit(nodeList);
+//             }
+//         });
+//     });
+// }
+
+const playOrQuit = (nodeList) => {
     endGraphicsButtonsEls.forEach((button) => {
-        button.addEventListener('click', (e) => {
+        button.onclick = (e) => {
             if (e.target.id === 'play-again-button') {
-                playAgain();
+                playAgain(nodeList);
             } else if (e.target.id === 'quit-button') {
-                quit();
+                quit(nodeList);
             }
-        });
+        };
     });
 }
 
-const showEndGraphics = () => {
+
+
+const showEndGraphics = (displayChildrenEls, word) => {
     endGraphicsEl.classList.toggle('toggle');
     let finalGuess = '';
     for (let childEl of displayChildrenEls) {
@@ -149,38 +171,62 @@ const showEndGraphics = () => {
     } else if (finalGuess !== word) {
         endGraphicsTextEl.textContent = 'Game Over';
     }
-    playOrQuit();
+    playOrQuit(displayChildrenEls);
 }
 
+let correct = 0;
+let strikes = 0;
 
-const addToDisplays = (guess) => {
+
+const addToDisplays = (guess, word, nodeList) => {
     if (word.includes(guess)) {
         for (i = 0; i < word.length; i++) {
             if (word[i] === guess) {
-                displayChildrenEls[i].textContent = guess;  
+                nodeList[i].textContent = guess;  
             }
         }
         correct +=1;
         strikes = 0;
+        resetStrikes();
     } else {
         addToWrongLetters(guess);
         strikes += 1;
         updateStrikes();
+    } 
+    
+    if (strikes >= 3 || correct >= word.length) {
+        toggleInputPopup();
+        showEndGraphics(nodeList, word);
     }
 }
+
+// let word;
+// let displayChildrenEls;
 
 const start = () => {
     let word = wordArray[Math.floor(Math.random() * wordArray.length)];
     console.log(word);
-    createDisplays();
+    createDisplays(word);
     let displayChildrenEls = document.querySelectorAll('.display');
-    let strikes = 0;
-    let correct = 0;
-    while (strikes < 3 && correct < word.length) {
-        getUserGuess();
-    
-    }
+    // let strikes = 0;
+    // let correct = 0;
+    getUserGuess(word, displayChildrenEls);
+    // if (strikes < 3 && correct < word.length) {
+    //     strikes ++;
+    //     getUserGuess();
+    //     toggleInputPopup();
+    //     showEndGraphics(displayChildrenEls, word);
+    // } 
 }
+
+playGameButtonEl.onclick = () => {
+    toggleHomeScreen();
+    toggleInstructions();
+    startButtonEl.onclick = () => {
+        toggleInstructions();
+        start();
+    };
+};
 
 
 /*
@@ -214,5 +260,4 @@ play game ()
 
 
 play game button. add event listener ('click', play game());
-*/ 
-
+*/
