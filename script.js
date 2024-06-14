@@ -1,20 +1,5 @@
 
-// user stories:
-// -moving image of pitcher
-// -baseball image at different rotations
-// -sound effects (if have times)
-// -computer selects random word from list
-// -user enters letter when pitcher throws
-// -strike count goes up if user wrong and letter added to wrong letters
-// -letter added to display and strikes reset if answers correct letter
-
-
-
-
-
-const wordArray = ["BAT", "BALL", "HIT", "RUN", "BUNT", "CATCH", "STEAL", "SLIDE", "TAG", "WALK", "BASE", "DIVE", "FOUL", "GLOVE", "PITCH", "UMP", "ZONE", "CURVE", "SWING", "OUT", "HOME", "LINE", "PLAY", "TEAM", "FAIR", "TOSS", "DIRT", "SAFE"];
-
-
+const wordsArray = ["BAT", "BALL", "HIT", "RUN", "BUNT", "CATCH", "STEAL", "SLIDE", "TAG", "WALK", "BASE", "DIVE", "FOUL", "GLOVE", "PITCH", "UMP", "ZONE", "CURVE", "SWING", "OUT", "HOME", "LINE", "PLAY", "TEAM", "FAIR", "TOSS", "DIRT", "SAFE"];
 
 
 const displaysParentEl = document.getElementById('displays');
@@ -26,12 +11,10 @@ const instructionsEl = document.getElementById('instructions');
 const startButtonEl = document.getElementById('start-button');
 const inputPopupEl = document.getElementById('input-popup');
 const inputBoxEl = document.getElementById('input-box');
-const inputButtonEl= document.getElementById('input-button');
+const inputButtonEl = document.getElementById('input-button');
 const endGraphicsEl = document.getElementById('end-graphics');
 const endGraphicsTextEl = document.getElementById('end-graphics-text');
 const endGraphicsButtonsEls = document.querySelectorAll('.end-graphics-button');
-
-//inputButtonEl.addEventListener('click', () => console.log(inputBoxEl.value));
 
 
 const toggleHomeScreen = () => {
@@ -50,24 +33,15 @@ const createDisplays = (word) => {
     for (i = 0; i < word.length; i++) {
         let displayEl = document.createElement('div');
         displayEl.setAttribute('id', `${i}`);
-        displayEl.setAttribute('class', 'display'); 
+        displayEl.setAttribute('class', 'display');
         displaysParentEl.append(displayEl);
     }
 }
 
 const removeDisplays = (nodeList) => {
-    // let displays = document.querySelectorAll('.display');
     nodeList.forEach((display) => {
         display.remove();
-    });  
-}
-
-const getUserGuess = (word, nodeList) => {
-    toggleInputPopup();
-    inputButtonEl.onclick = () => {
-        addToDisplays(inputBoxEl.value, word, nodeList)
-        inputBoxEl.value = '';
-    };
+    });
 }
 
 const updateStrikes = () => {
@@ -93,8 +67,8 @@ const addToWrongLetters = (guess) => {
         let wrongLetter = document.createElement('li');
         wrongLetter.textContent = guess;
         wrongLetter.setAttribute('class', 'wrong-letter');
-        wrongLettersListEl.append(wrongLetter);     
-    }  
+        wrongLettersListEl.append(wrongLetter);
+    }
 }
 
 const removeWrongLetters = () => {
@@ -115,7 +89,6 @@ const resetAll = (nodeList) => {
 
 }
 
-
 const removeEndGraphics = () => {
     endGraphicsEl.classList.toggle('toggle');
 }
@@ -132,18 +105,6 @@ const quit = (nodeList) => {
     toggleHomeScreen();
 }
 
-// const playOrQuit = (nodeList) => {
-//     endGraphicsButtonsEls.forEach((button) => {
-//         button.addEventListener('click', (e) => {
-//             if (e.target.id === 'play-again-button') {
-//                 playAgain(nodeList);
-//             } else if (e.target.id === 'quit-button') {
-//                 quit(nodeList);
-//             }
-//         });
-//     });
-// }
-
 const playOrQuit = (nodeList) => {
     endGraphicsButtonsEls.forEach((button) => {
         button.onclick = (e) => {
@@ -155,8 +116,6 @@ const playOrQuit = (nodeList) => {
         };
     });
 }
-
-
 
 const showEndGraphics = (displayChildrenEls, word) => {
     endGraphicsEl.classList.toggle('toggle');
@@ -177,46 +136,40 @@ const showEndGraphics = (displayChildrenEls, word) => {
 let correct = 0;
 let strikes = 0;
 
-
 const addToDisplays = (guess, word, nodeList) => {
-    if (word.includes(guess)) {
+    if (word.includes(guess) && guess !== '') {
         for (i = 0; i < word.length; i++) {
             if (word[i] === guess) {
-                nodeList[i].textContent = guess;  
+                nodeList[i].textContent = guess;
             }
         }
-        correct +=1;
+        correct += 1;
         strikes = 0;
         resetStrikes();
     } else {
         addToWrongLetters(guess);
         strikes += 1;
         updateStrikes();
-    } 
-    
+    }
     if (strikes >= 3 || correct >= word.length) {
         toggleInputPopup();
         showEndGraphics(nodeList, word);
     }
 }
 
-// let word;
-// let displayChildrenEls;
+const getUserGuess = (word, nodeList) => {
+    toggleInputPopup();
+    inputButtonEl.onclick = () => {
+        addToDisplays(inputBoxEl.value, word, nodeList)
+        inputBoxEl.value = '';
+    };
+}
 
 const start = () => {
-    let word = wordArray[Math.floor(Math.random() * wordArray.length)];
-    console.log(word);
+    let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     createDisplays(word);
     let displayChildrenEls = document.querySelectorAll('.display');
-    // let strikes = 0;
-    // let correct = 0;
     getUserGuess(word, displayChildrenEls);
-    // if (strikes < 3 && correct < word.length) {
-    //     strikes ++;
-    //     getUserGuess();
-    //     toggleInputPopup();
-    //     showEndGraphics(displayChildrenEls, word);
-    // } 
 }
 
 playGameButtonEl.onclick = () => {
@@ -227,37 +180,3 @@ playGameButtonEl.onclick = () => {
         start();
     };
 };
-
-
-/*
-
-
-start ()
-    let word = wordArray[Math.floor(Math.random() * wordArray.length)];
-    create display ()
-    let displayChildrenEls = document.querySelectorAll('.display');
-    while strikes < 3 and correct < random word length 
-        let strikes = 0
-        let correct = 0    
-        get user guess() 
-            IF guess is in word
-                THEN bat crack noise and crowd cheer
-                add to displays ()
-                correct += 1
-                strikes = 0
-                reset strike display ()
-            ELSE
-                add to wrong letters ()
-                strikes += 1
-                update strikes ()
-
-    toggle input popup ()
-    toggle end graphics
-
-play game ()
-    toggle instructions()
-    start button. add event listener ('click', start())
-
-
-play game button. add event listener ('click', play game());
-*/
