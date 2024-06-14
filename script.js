@@ -38,8 +38,8 @@ const createDisplays = (word) => {
     }
 }
 
-const removeDisplays = (nodeList) => {
-    nodeList.forEach((display) => {
+const removeDisplays = (displayChildrenEls) => {
+    displayChildrenEls.forEach((display) => {
         display.remove();
     });
 }
@@ -78,8 +78,8 @@ const removeWrongLetters = () => {
     });
 }
 
-const resetAll = (nodeList) => {
-    removeDisplays(nodeList);
+const resetAll = (displayChildrenEls) => {
+    removeDisplays(displayChildrenEls);
     resetStrikes();
     removeWrongLetters();
     word = ''
@@ -93,25 +93,25 @@ const removeEndGraphics = () => {
     endGraphicsEl.classList.toggle('toggle');
 }
 
-const playAgain = (nodeList) => {
+const playAgain = (displayChildrenEls) => {
     removeEndGraphics();
-    resetAll(nodeList);
+    resetAll(displayChildrenEls);
     start();
 }
 
-const quit = (nodeList) => {
+const quit = (displayChildrenEls) => {
     removeEndGraphics();
-    resetAll(nodeList);
+    resetAll(displayChildrenEls);
     toggleHomeScreen();
 }
 
-const playOrQuit = (nodeList) => {
+const playOrQuit = (displayChildrenEls) => {
     endGraphicsButtonsEls.forEach((button) => {
         button.onclick = (e) => {
             if (e.target.id === 'play-again-button') {
-                playAgain(nodeList);
+                playAgain(displayChildrenEls);
             } else if (e.target.id === 'quit-button') {
-                quit(nodeList);
+                quit(displayChildrenEls);
             }
         };
     });
@@ -136,14 +136,14 @@ const showEndGraphics = (displayChildrenEls, word) => {
 let correct = 0;
 let strikes = 0;
 
-const addToDisplays = (guess, word, nodeList) => {
+const addToDisplays = (guess, word, displayChildrenEls) => {
     if (word.includes(guess) && guess !== '') {
         for (i = 0; i < word.length; i++) {
             if (word[i] === guess) {
-                nodeList[i].textContent = guess;
+                displayChildrenEls[i].textContent = guess;
+                correct += 1;
             }
         }
-        correct += 1;
         strikes = 0;
         resetStrikes();
     } else {
@@ -153,15 +153,17 @@ const addToDisplays = (guess, word, nodeList) => {
     }
     if (strikes >= 3 || correct >= word.length) {
         toggleInputPopup();
-        showEndGraphics(nodeList, word);
+        showEndGraphics(displayChildrenEls, word);
     }
 }
 
-const getUserGuess = (word, nodeList) => {
+const getUserGuess = (word, displayChildrenEls) => {
     toggleInputPopup();
-    inputButtonEl.onclick = () => {
-        addToDisplays(inputBoxEl.value, word, nodeList)
+    inputBoxEl.focus(); // We may have learned this already, but I used stack overflow to focus the text cursor automatically. https://stackoverflow.com/questions/10910822/how-to-show-textarea-cursor-automatically
+    (inputButtonEl.onclick) = () => {
+        addToDisplays(inputBoxEl.value, word, displayChildrenEls)
         inputBoxEl.value = '';
+        inputBoxEl.focus();
     };
 }
 

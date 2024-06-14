@@ -12,11 +12,15 @@ Guess the correct letters of a baseball term to win! If you guess wrong, you wil
 
 # Attributions
 
-I used stack overflow to help with CSS, specifically putting a border on my text. [<u>Here</u>](https://stackoverflow.com/questions/2570972/css-font-border) is the link to that article.
+* I used stack overflow to help with CSS, specifically putting a border on my text. [<u>Here</u>](https://stackoverflow.com/questions/2570972/css-font-border) is the link to that article.
 
-I also used [<u>this article</u>](https://stackoverflow.com/questions/48913759/how-to-add-alt-text-to-background-images-making-background-images-accessible) to help add alt text to my main background image.
+* I used [<u>this article</u>](https://stackoverflow.com/questions/48913759/how-to-add-alt-text-to-background-images-making-background-images-accessible) to help add alt text to my main background image.
 
-Sean also helped me with some of the CSS.
+* I used [<u>this article</u>](https://stackoverflow.com/questions/11100041/how-do-you-automatically-set-text-box-to-uppercase) to help automatically set my input text to capital letters. This helped prevent bugs by keeping the letters consistent, as all the words in my Javascript wordsArray were uppercase.
+
+* Sean helped me with some of the CSS.
+
+* Glenn helped guide me in the right direction for my code organization. 
 
 # Technologies Used
 

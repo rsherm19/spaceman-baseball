@@ -46,6 +46,7 @@ main {
 
 button:hover {
     cursor: pointer;
+    border-width: 3px;
 }
 
 
@@ -66,7 +67,7 @@ button:hover {
     text-transform: uppercase;
     color: #ffffff;
     -webkit-text-stroke: 2px #ff5a5a;
-    /* I got the text stroke idea from stack overflow */
+    /* I got the text stroke idea from stack overflow  https://stackoverflow.com/questions/2570972/css-font-border*/
     border-bottom: 5px solid rgb(0, 0, 0);
     margin-bottom: -50px;
     display: flex;
