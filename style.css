@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap'); /*tiny5  or tiny5-regular*/
-@import url('https://fonts.googleapis.com/css2?family=Honk&family=Tiny5&display=swap');  /*honk*/
+@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+/*tiny5  or tiny5-regular*/
+@import url('https://fonts.googleapis.com/css2?family=Honk&family=Tiny5&display=swap');
+/*honk*/
 
 * {
     font-family: tiny5;
@@ -9,7 +11,7 @@ body {
     background-color: beige;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-areas: 
+    grid-template-areas:
         'header header header'
         'main main main'
         'footer footer footer';
@@ -45,7 +47,7 @@ main {
 button:hover {
     cursor: pointer;
 }
- 
+
 
 #displays {
     width: 100vh;
@@ -54,7 +56,7 @@ button:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;  
+    align-items: center;
 }
 
 .display {
@@ -63,9 +65,9 @@ button:hover {
     font-size: 70px;
     text-transform: uppercase;
     color: #ffffff;
-    -webkit-text-stroke: 2px #ff5a5a; 
+    -webkit-text-stroke: 2px #ff5a5a;
     /* I got the text stroke idea from stack overflow */
-    border-bottom: 5px solid rgb(255, 255, 255);
+    border-bottom: 5px solid rgb(0, 0, 0);
     margin-bottom: -50px;
     display: flex;
     justify-content: center;
@@ -127,10 +129,20 @@ button:hover {
     text-align: center;
 }
 
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Sean helped me with this */
+
 #home-screen h1 {
     font-family: honk;
     font-size: 8vw;
     line-height: 100px;
+    text-align: center;
+    animation: blink 1s 3 alternate;
 }
 
 #home-screen button {
@@ -185,15 +197,9 @@ button:hover {
     border-width: 5px;
     border-color: #ffffff;
     border-radius: 40px;
-    text-align: center;;
+    text-align: center;
+    ;
 }
-
-@keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
-/* Sean helped me with this */
 
 #end-graphics-text {
     text-align: center;
@@ -212,7 +218,7 @@ button:hover {
 
 
 
-.background-alt{
+.background-alt {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -225,6 +231,7 @@ button:hover {
     display: none;
 }
 
-#displays .toggle {
+/* #displays .toggle {
     display: none;
-}
+    background-color: transparent;
+} */

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script defer src="./script.js"></script>
     <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
     <header>
         <h2 id="strikes">Strikes: 🔲🔲🔲</h2>
@@ -15,23 +17,27 @@
             <ul id="wrong-letters-list">
             </ul>
         </div>
-        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fsouthpark%2Fimages%2F7%2F79%2FBaseball-team.png%2Frevision%2Flatest%3Fcb%3D20170925120309&f=1&nofb=1&ipt=99a5646084b31c6e2b54a94ca1c4cc71ae5c9eb8a6f9b9266a2f63c3710f87cd&ipo=images" alt="A team of cartoon baseball players">
-    </header>  
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fsouthpark%2Fimages%2F7%2F79%2FBaseball-team.png%2Frevision%2Flatest%3Fcb%3D20170925120309&f=1&nofb=1&ipt=99a5646084b31c6e2b54a94ca1c4cc71ae5c9eb8a6f9b9266a2f63c3710f87cd&ipo=images"
+            alt="A team of cartoon baseball players">
+    </header>
     <main>
         <img class="background-alt" alt="A cartoon baseball field with players">
-        <article id="displays">
+        <article id="displays"></article>
         <div class="popup" id="home-screen">
             <h1>Spaceman Baseball</h1>
             <button id="play-game-button" type="button">Play Game!</button>
         </div>
         <div class="popup toggle" id="instructions">
             <h2>Instructions:</h2>
-            <p>Guess the correct letters of a baseball term to win! If you guess wrong, you will get a strike, and the letter will go to the wrong letters list. Each time you get a correct letter, your strikes reset! Play ball!</p>
+            <p>Guess the correct letters of a baseball term to win! If you guess wrong, you will get a strike, and the
+                letter will go to the wrong letters list. Each time you get a correct letter, your strikes reset! Play
+                ball!</p>
             <button id="start-button" type="button">Start!</button>
         </div>
         <div class="popup toggle" id="input-popup">
             <h1>Enter a letter!</h1>
-            <input id="input-box" type="text" maxlength="1" oninput="this.value = this.value.toUpperCase()"> <!-- I got the this value to uppercase from stack overflow -->
+            <input id="input-box" type="text" maxlength="1" oninput="this.value = this.value.toUpperCase()">
+            <!-- I got the this value to uppercase from stack overflow -->
             <br>
             <button id="input-button" type="button">Enter</button>
         </div>
@@ -45,4 +51,5 @@
     </main>
 
 </body>
+
 </html>
