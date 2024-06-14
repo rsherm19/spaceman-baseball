@@ -138,6 +138,7 @@ button:hover {
 
 /* Sean helped me with this */
 
+
 #home-screen h1 {
     font-family: honk;
     font-size: 8vw;
@@ -218,7 +219,6 @@ button:hover {
 }
 
 
-
 .background-alt {
     position: absolute;
     width: 1px;
@@ -226,6 +226,7 @@ button:hover {
     padding: 0;
     margin: -1px 0 0 0;
 }
+
 /* This was to make the img tag for the background image not apear on the screen. Learned from stack overflow. */
 
 

@@ -174,8 +174,7 @@ const getUserGuess = (word, displayChildrenEls) => {
 }
 
 const start = () => {
-    let word = 'BALL';
-    // let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+    let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     createDisplays(word);
     let displayChildrenEls = document.querySelectorAll('.display');
     getUserGuess(word, displayChildrenEls);

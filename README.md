@@ -3,7 +3,7 @@
 
 *Spaceman Baseball* is a browser game that utilizes the rules of the game "Spaceman" but with a baseball theme. Rather than drawing a different body part of a man upon each wrong answer, the game counts your strikes, similar to baseball. Then, when you answer a correct answer, your strikes reset, and the letter is added to the correct letter display. Each wrong letter is added to the wrong letter display, also.
 
-I chose "Spaceman"  because it was not too difficult, still it allowed a lot of freedom to be creative and experiment. I also like baseball, so I figued it would be cool to incorporate a baseball theme.
+I chose "Spaceman"  because it was not too difficult. Still, it allowed a lot of freedom to be creative and experiment. I also like baseball, so I figued it would be cool to incorporate a baseball theme.
 
 # Getting Started
 [<u>Click here to play!</u>](https://rsherm19.github.io/spaceman-baseball/)
