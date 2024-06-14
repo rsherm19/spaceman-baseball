@@ -32,8 +32,6 @@ I used HTML, CSS, and Javascript for this project.
     * adding crowd cheers
 * minor changes to the css like
     * being able to use the return key to submit instead of always pressing the button
-    * having the input automatically continue in the input box rather than having to click it each time
     * maybe make the buttons blink, too
-    * change the look of the buttons when you hover over them
 * I would like to organize the javascript better and have cleaner code.
 * I would like to get more feedback from others

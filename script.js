@@ -85,6 +85,7 @@ const resetAll = (displayChildrenEls) => {
     word = ''
     strikes = 0;
     correct = 0;
+    usedLetters = [];
     wrongLettersArray = [];
 
 }
@@ -135,17 +136,22 @@ const showEndGraphics = (displayChildrenEls, word) => {
 
 let correct = 0;
 let strikes = 0;
+let usedLetters = [];
 
 const addToDisplays = (guess, word, displayChildrenEls) => {
-    if (word.includes(guess) && guess !== '') {
+    if (word.includes(guess) && guess !== '' && !usedLetters.includes(guess)) {
         for (i = 0; i < word.length; i++) {
             if (word[i] === guess) {
                 displayChildrenEls[i].textContent = guess;
                 correct += 1;
             }
         }
+        usedLetters.push(guess);
         strikes = 0;
         resetStrikes();
+    } else if (usedLetters.includes(guess)) {
+        strikes += 1;
+        updateStrikes();
     } else {
         addToWrongLetters(guess);
         strikes += 1;
@@ -168,7 +174,8 @@ const getUserGuess = (word, displayChildrenEls) => {
 }
 
 const start = () => {
-    let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+    let word = 'BALL';
+    // let word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     createDisplays(word);
     let displayChildrenEls = document.querySelectorAll('.display');
     getUserGuess(word, displayChildrenEls);
